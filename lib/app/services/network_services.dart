@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:kt99/app/models/api_response/api_response.dart';
 
-class ApiServices extends GetxService {
+class NetworkServices extends GetxService {
   Dio client = Dio(BaseOptions(baseUrl: 'https://dummyjson.com/'));
 
   Future<ApiResponse<T>> get<T>(String path) async {
@@ -36,7 +36,7 @@ class ApiServices extends GetxService {
     }
   }
 
-  Future<ApiServices> init() async {
+  Future<NetworkServices> init() async {
     return this;
   }
 }

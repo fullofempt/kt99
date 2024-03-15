@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:kt99/app/services/api_services.dart';
+import 'package:kt99/app/services/network_services.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async{
+  await initServices();
   runApp(
     GetMaterialApp(
       title: "Application",
@@ -15,5 +16,5 @@ void main() {
   );
 }
 Future<void> initServices() async {
-  await Get.putAsync(() => ApiServices().init());
+  await Get.putAsync(() async => NetworkServices().init());
 }

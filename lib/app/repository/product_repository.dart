@@ -1,12 +1,12 @@
 import 'package:kt99/app/models/api_response/api_response.dart';
 import 'package:kt99/app/models/product/product.dart';
-import 'package:kt99/app/services/api_services.dart';
+import 'package:kt99/app/services/network_services.dart';
 
 typedef ProductListResponse = ApiResponse<List<Product>>;
 typedef JsonResponse = ApiResponse<dynamic>;
 
 class ProductRepository {
-  final ApiServices _api;
+  final NetworkServices _api;
 
   ProductRepository(this._api);
 
