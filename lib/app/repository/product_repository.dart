@@ -14,13 +14,20 @@ class ProductRepository {
     JsonResponse data = await _api.get('products');
 
     return data.when(
-        loading: () => ProductListResponse.loading(),
-        success: (jsonData) {
-          var productsJson = jsonData['products'] as List<dynamic>;
+      loading: () => ProductListResponse.loading(),
+      success: (jsonData) {
+        print('ЖСОНТВАРЬ: $jsonData');
+        // Check if jsonData is a list and not empty
+        if (jsonData is List && jsonData.isNotEmpty) {
+          // Map each JSON object to a Product object
           var products =
-              productsJson.map((json) => Product.fromJson(json)).toList();
+              jsonData.map((json) => Product.fromJson(json)).toList();
           return ProductListResponse.success(products);
-        },
-        failed: (e, o) => ProductListResponse.failed(e, o));
+        } else {
+          return ProductListResponse.failed('Invalid JSON format', null);
+        }
+      },
+      failed: (e, o) => ProductListResponse.failed(e, o),
+    );
   }
 }

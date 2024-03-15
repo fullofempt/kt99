@@ -5,13 +5,16 @@ import 'package:get/get.dart';
 import 'package:kt99/app/models/api_response/api_response.dart';
 
 class NetworkServices extends GetxService {
-  Dio client = Dio(BaseOptions(baseUrl: 'https://dummyjson.com/'));
+  Dio client = Dio(BaseOptions(baseUrl: 'https://fakestoreapi.com/'));
+  //https://dummyjson.com/
 
-  Future<ApiResponse<T>> get<T>(String path) async {
+  //Generics или обобщения позволяют добавить программе гибкости и уйти от жесткой привязки к определенным типам.
+
+  Future<ApiResponse<T>> get<T>(String path) async { //Т - типизированный 
     try {
       var randomInt = Random().nextInt(100) % 3;
       if (randomInt == 0) {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 1));
         throw "API RANDOM ERROR";
       }
       var response = await client.get(path);

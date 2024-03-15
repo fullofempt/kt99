@@ -8,9 +8,9 @@ class Product with _$Product {
   factory Product({ 
     required int id,
     required String title,
-    required int price,
+    required double price,
     required String description,
-    required String brand,
+    required String image,
     }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>

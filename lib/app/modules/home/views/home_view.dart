@@ -25,6 +25,7 @@ class HomeView extends GetView<HomeController> {
                 child: controller.products.when(
                   loading: () => const CircularProgressIndicator(),
                   success: (List<Product> list) => ListView.builder(
+                    physics: ClampingScrollPhysics(),
                     itemCount: list.length,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
@@ -32,6 +33,14 @@ class HomeView extends GetView<HomeController> {
                       return ListTile(
                         title: Text(item.title),
                         subtitle: Text(item.description),
+                        leading: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Image.network(
+                            item.image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       );
                     },
                   ),
